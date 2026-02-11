@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Chat</title>
+</head>
+<body>
+
+<h2>Chat Room</h2>
+
+<p id="info"></p>
+<button id="leaveBtn">Leave Room</button>
+
+<div id="messages" style="border:1px solid #ccc; height:300px; overflow-y:auto; padding:10px;"></div>
+<p id="typing" style="font-style: italic;"></p>
+
+<form id="msgForm">
+  <input id="msg" placeholder="Type message..." autocomplete="off" required />
+  <button type="submit">Send</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
+
+</body>
+</html>

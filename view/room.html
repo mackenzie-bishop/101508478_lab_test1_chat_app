@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Join Room</title>
+</head>
+<body>
+
+<h2>Join Chat Room</h2>
+
+<p id="welcome"></p>
+
+<label for="room">Room:</label>
+<select id="room">
+  <option value="devops">devops</option>
+  <option value="cloud computing">cloud computing</option>
+  <option value="covid19">covid19</option>
+  <option value="sports">sports</option>
+  <option value="nodeJS">nodeJS</option>
+</select>
+
+<br><br>
+
+<button id="joinBtn">Join Room</button>
+<button id="logoutBtn">Logout</button>
+
+<script>
+  const username = localStorage.getItem("username");
+
+  // If not logged in, go back to login
+  if (!username) {
+    window.location.href = "/view/login.html";
+  } else {
+    document.getElementById("welcome").innerText = "Logged in as: " + username;
+  }
+
+  document.getElementById("joinBtn").addEventListener("click", () => {
+    const room = document.getElementById("room").value;
+    localStorage.setItem("room", room);
+    window.location.href = "/view/chat.html";
+  });
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "/view/login.html";
+  });
+</script>
+
+</body>
+</html>
