@@ -3,48 +3,53 @@
 <head>
   <meta charset="utf-8" />
   <title>Join Room</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
+  <div class="app-card">
+    <div class="app-header">Chat app</div>
+    <div class="app-body">
+      <div class="mb-3">
+        <label class="form-label fw-bold">Username</label>
+        <input class="form-control" id="usernameDisplay" disabled />
+      </div>
 
-<h2>Join Chat Room</h2>
+      <div class="mb-3">
+        <label class="form-label fw-bold">Room</label>
+        <select class="form-select" id="room">
+          <option value="devops">devops</option>
+          <option value="cloud computing">cloud computing</option>
+          <option value="covid19">covid19</option>
+          <option value="sports">sports</option>
+          <option value="nodeJS">nodeJS</option>
+        </select>
+      </div>
 
-<p id="welcome"></p>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary-custom text-white" id="joinBtn">Join Chat Room</button>
+        <button class="btn btn-outline-secondary" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </div>
 
-<label for="room">Room:</label>
-<select id="room">
-  <option value="devops">devops</option>
-  <option value="cloud computing">cloud computing</option>
-  <option value="covid19">covid19</option>
-  <option value="sports">sports</option>
-  <option value="nodeJS">nodeJS</option>
-</select>
+  <script>
+    const username = localStorage.getItem("username");
+    if (!username) window.location.href = "/view/login.html";
+    document.getElementById("usernameDisplay").value = username;
 
-<br><br>
+    document.getElementById("joinBtn").addEventListener("click", () => {
+      const room = document.getElementById("room").value;
+      localStorage.setItem("room", room);
+      window.location.href = "/view/chat.html";
+    });
 
-<button id="joinBtn">Join Room</button>
-<button id="logoutBtn">Logout</button>
-
-<script>
-  const username = localStorage.getItem("username");
-
-  // If not logged in, go back to login
-  if (!username) {
-    window.location.href = "/view/login.html";
-  } else {
-    document.getElementById("welcome").innerText = "Logged in as: " + username;
-  }
-
-  document.getElementById("joinBtn").addEventListener("click", () => {
-    const room = document.getElementById("room").value;
-    localStorage.setItem("room", room);
-    window.location.href = "/view/chat.html";
-  });
-
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.clear();
-    window.location.href = "/view/login.html";
-  });
-</script>
-
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "/view/login.html";
+    });
+  </script>
 </body>
 </html>
